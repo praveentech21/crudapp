@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Task Manager</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <header>
-            <h1>Today's Tasks</h1>
-            <button id="addTaskBtn">Add New Task</button>
-        </header>
-        <main id="taskList">
-            <!-- Task list will be dynamically populated here -->
-        </main>
-        <script src="app.js"></script>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Today's Tasks</h1>
+    <button id="addTaskBtn">Add New Task</button>
+  </header>
+  <main id="taskList">
+    <!-- Task list will be dynamically populated here -->
+  </main>
+  <div id="addTaskModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Add New Task</h2>
+      <input type="text" id="taskInput" placeholder="Enter task description...">
+      <button id="submitTaskBtn">Submit</button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
 </html>
