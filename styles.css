@@ -1,0 +1,33 @@
+    /* Basic styles for header */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      
+      /* Style for task list */
+      #taskList {
+        padding: 20px;
+      }
+      
+      /* Style for individual task item */
+      .taskItem {
+        margin-bottom: 10px;
+      }
+      
+      /* Button styles */
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+      
+      button:hover {
+        background-color: #0056b3;
+      }
+      
+      
