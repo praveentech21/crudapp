@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Your head content here -->
+</head>
+<body>
+  <!-- Your HTML content here -->
+  
+  <!-- Firebase JavaScript SDK -->
+  <script type="module">
+    // Firebase imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      databaseURL: "YOUR_DATABASE_URL",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    // Function to add task to Firebase database
+    function addTask(taskName, taskDescription, status) {
+      const dailyTasksRef = ref(database, "dailytasks");
+      const newTaskRef = push(dailyTasksRef);
+      
+      set(newTaskRef, {
+        taskName: taskName,
+        taskDescription: taskDescription,
+        status: status
+      })
+      .then(() => {
+        console.log("Task added successfully!");
+      })
+      .catch((error) => {
+        console.error("Error adding task: ", error);
+      });
+    }
+
+    // Function to update task in Firebase database
+    function updateTask(taskId, updatedTaskName, updatedTaskDescription, updatedStatus) {
+      const taskRef = ref(database, `dailytasks/${taskId}`);
+      
+      set(taskRef, {
+        taskName: updatedTaskName,
+        taskDescription: updatedTaskDescription,
+        status: updatedStatus
+      })
+      .then(() => {
+        console.log("Task updated successfully!");
+      })
+      .catch((error) => {
+        console.error("Error updating task: ", error);
+      });
+    }
+
+    // Function to delete task from Firebase database
+    function deleteTask(taskId) {
+      const taskRef = ref(database, `dailytasks/${taskId}`);
+      
+      remove(taskRef)
+      .then(() => {
+        console.log("Task deleted successfully!");
+      })
+      .catch((error) => {
+        console.error("Error deleting task: ", error);
+      });
+    }
+
+    // Event listener for Save Changes button in Edit Task modal
+    document.getElementById("saveTaskChangesBtn").addEventListener("click", () => {
+      const taskId = document.getElementById("editTaskId").value;
+      const updatedTaskName = document.getElementById("editTaskNameInput").value.trim();
+      const updatedTaskDescription = document.getElementById("editTaskDescriptionInput").value.trim();
+      const updatedStatus = document.getElementById("editTaskStatusInput").value.trim();
+      
+      updateTask(taskId, updatedTaskName, updatedTaskDescription, updatedStatus);
+    });
+
+    // Event listener for Change Status button
+    document.getElementById("changeStatusBtn").addEventListener("click", () => {
+      const taskId = document.getElementById("taskItem").getAttribute("data-task-id");
+      const currentStatus = document.getElementById("taskStatus").textContent.trim();
+      let newStatus = "";
+      if (currentStatus === "pending") {
+        newStatus = "running";
+      } else if (currentStatus === "running") {
+        newStatus = "complete";
+      }
+      
+      updateTask(taskId, null, null, newStatus);
+    });
+
+    // Event listener for Delete Task button
+    document.getElementById("deleteTaskBtn").addEventListener("click", () => {
+      const taskId = document.getElementById("taskItem").getAttribute("data-task-id");
+      
+      deleteTask(taskId);
+    });
+  </script>
+</body>
+</html>
