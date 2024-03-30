@@ -1,23 +1,11 @@
 <!DOCTYPE html>
 
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
-  data-assets-path="BHavani/"
+  data-assets-path="Bhavani/"
   data-template="vertical-menu-template-free"
 >
   <head>
@@ -27,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Daily Tasks</title>
+    <title>Sai Praveen Tasks</title>
 
     <meta name="description" content />
 
@@ -35,7 +23,7 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="BHavani/img/favicon/favicon.ico"
+      href="Bhavani/img/favicon/favicon.ico"
     />
 
     <!-- Fonts -->
@@ -47,40 +35,16 @@
     />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="BHavani/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="Bhavani/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="Bhavani/vendor/css/core.css"  class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="Bhavani/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
+    <link rel="stylesheet" href="Bhavani/css/demo.css" />
 
-    <!-- Core CSS -->
-    <link
-      rel="stylesheet"
-      href="BHavani/vendor/css/core.css"
-      class="template-customizer-core-css"
-    />
-    <link
-      rel="stylesheet"
-      href="BHavani/vendor/css/theme-default.css"
-      class="template-customizer-theme-css"
-    />
-    <link rel="stylesheet" href="BHavani/css/demo.css" />
+    <link rel="stylesheet" href="Bhavani/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
 
-    <!-- Vendors CSS -->
-    <link
-      rel="stylesheet"
-      href="BHavani/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="BHavani/vendor/libs/apex-charts/apex-charts.css"
-    />
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="BHavani/vendor/js/helpers.js"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="BHavani/js/config.js"></script>
+    <link rel="stylesheet" href="Bhavani/vendor/libs/apex-charts/apex-charts.css"/>
+    <script src="Bhavani/vendor/js/helpers.js"></script>
+    <script src="Bhavani/js/config.js"></script>
   </head>
 
   <body>
@@ -213,39 +177,30 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
+
+              
               <div class="row">
                 <div class="col-lg-8 mb-4 order-0">
                   <div class="card">
                     <div class="d-flex align-items-end row">
                       <div class="col-sm-7">
                         <div class="card-body">
-                          <h5 class="card-title text-primary">
-                            Chear Up Sai Praveen 🎉 Beautiful Days are Wating
-                            for you
-                          </h5>
-                          <p class="mb-4">
-                            SRKR CampusOnline is my dream. I have to work for
-                            it.
-                          </p>
-
-                          <a
-                            href="javascript:;"
-                            class="btn btn-sm btn-outline-primary"
-                            >Add Task</a
-                          >
+                          <h5 class="card-title text-primary"> Chear Up Sai Praveen 🎉 Beautiful Days are Wating for you </h5>
+                          <p class="mb-4"> SRKR CampusOnline is my dream. I have to work for it.</p>
+                          <a href="javascript:;" class="btn btn-sm btn-outline-primary" >Add Task</a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+
               <div class="row">
                 <!-- Transactions -->
                 <div class="col-md-6 col-lg-4 order-2 mb-4">
                   <div class="card h-100">
-                    <div
-                      class="card-header d-flex align-items-center justify-content-between"
-                    >
+                    <div class="card-header d-flex align-items-center justify-content-between">
                       <h5 class="card-title m-0 me-2">Today your works</h5>
                     </div>
                     <div class="card-body">
@@ -261,69 +216,32 @@
             <!-- model code starts hear -->
 
             <!-- Add Task Modal -->
-            <div
-              class="modal fade"
-              id="addTaskModal"
-              tabindex="-1"
-              aria-labelledby="addTaskModalLabel"
-              aria-hidden="true"
-            >
+            <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true" >
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="addTaskModalLabel">
-                      Add New Task
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
+                    <h5 class="modal-title" id="addTaskModalLabel"> Add New Task </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     <div class="mb-3">
-                      <label for="taskNameInput" class="form-label"
-                        >Task Name</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="taskNameInput"
-                      />
+                      <label for="taskNameInput" class="form-label">Task Name</label>
+                      <input type="text" class="form-control" id="taskNameInput"/>
                     </div>
                     <div class="mb-3">
-                      <label for="taskDescriptionInput" class="form-label"
-                        >Task Description</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="taskDescriptionInput"
-                      />
+                      <label for="taskDescriptionInput" class="form-label">Task Description</label>
+                      <input type="text" class="form-control" id="taskDescriptionInput"/>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      id="submitTaskBtn"
-                    >
-                      Add Task
-                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                    <button type="button" class="btn btn-primary" id="submitTaskBtn"> Add Task</button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- model code ends here          -->
+            <!-- model code ends here  -->
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
               <div
@@ -346,15 +264,12 @@
             </footer>
             <!-- / Footer -->
 
-            <div class="content-backdrop fade"></div>
           </div>
           <!-- Content wrapper -->
         </div>
         <!-- / Layout page -->
       </div>
 
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
 
@@ -369,22 +284,22 @@
 
     <script src="script.js" type="module"></script>
 
-    <script src="BHavani/vendor/libs/jquery/jquery.js"></script>
-    <script src="BHavani/vendor/libs/popper/popper.js"></script>
-    <script src="BHavani/vendor/js/bootstrap.js"></script>
-    <script src="BHavani/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="Bhavani/vendor/libs/jquery/jquery.js"></script>
+    <script src="Bhavani/vendor/libs/popper/popper.js"></script>
+    <script src="Bhavani/vendor/js/bootstrap.js"></script>
+    <script src="Bhavani/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="BHavani/vendor/js/menu.js"></script>
+    <script src="Bhavani/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="BHavani/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="Bhavani/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    <script src="BHavani/js/main.js"></script>
+    <script src="Bhavani/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="BHavani/js/dashboards-analytics.js"></script>
+    <script src="Bhavani/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
