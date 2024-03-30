@@ -229,25 +229,19 @@
                                 </div>
                                 <div class="modal-body">
                                   <div class="mb-3">
-                                    <label for="taskNameInput" class="form-label">Changed Task Name</label>
-                                    <input type="text" class="form-control" id="taskNameInput"/>
+                                    <label for="taskNameUpdate" class="form-label">Changed Task Name</label>
+                                    <input type="text" class="form-control" id="taskNameUpdate"/>
+                                    <input type="hidden" id="taskidtoupdate">
+                                    <input type="hidden" id="taskstatusnow">
                                   </div>
                                   <div class="mb-3">
-                                    <label for="taskDescriptionInput" class="form-label">Changed Task Description</label>
-                                    <input type="text" class="form-control" id="taskDescriptionInput"/>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="taskStatusInput" class="form-label">Changed Task Description</label>
-                                    <select name="taskStatusInput" id="taskStatusInput">
-                                        <option value="pending">Pending</option>
-                                        <option value="running">Working</option>
-                                        <option value="completed">Completed</option>
-                                    </select>
+                                    <label for="taskDescriptionUpdate" class="form-label">Changed Task Description</label>
+                                    <input type="text" class="form-control" id="taskDescriptionUpdate"/>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-                                  <button type="button" class="btn btn-primary" id="submitTaskBtn"> Add Task</button>
+                                  <button type="button" class="btn btn-primary" id="updatetaskbutton"> Update Task</button>
                                 </div>
                               </div>
                             </div>
@@ -275,7 +269,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-                                  <button type="button" class="btn btn-primary" id="updatetaskbutton"> Add Task</button>
+                                  <button type="button" class="btn btn-primary" id="submitTaskBtn"> Add Task</button>
                                 </div>
                               </div>
                             </div>

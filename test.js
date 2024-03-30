@@ -81,30 +81,33 @@ function todaystasks() {
       Object.entries(data).forEach(([key, value]) => {
 
         const status = value.taskstatus;
+        const [[firstkey, keydesc]] = Object.entries(value);
+
         let imageSource = "";
         let actionButtons = "";
 
         if (status === "pending") {
           imageSource = "Bhavani/img/icons/unicons/paypal.png";
           actionButtons = `
-          <button type="button" data-taskid="${key}" data-status="running" class="btn btn-outline-info changetorunning">Edit</i></button>
+          <button type="button" data-taskid="${key}" data-firstkey="${firstkey}" data-keydesc="${keydesc}" data-status="${status}" class="btn btn-outline-secondary updatetaskdetails" >Edit</button>
+          <button type="button" data-taskid="${key}" data-status="running" class="btn btn-outline-info changetorunning"><i class="tf-icons bx bx-rocket"></i></i></button>
           <button type="button" data-taskid="${key}" class="btn btn-icon btn-outline-danger deletetask"><i class="bx bx-trash-alt"></i></button>
         `;
       
         } else if (status === "running") {
             actionButtons = `
-            <button type="button" data-taskid="${key}" data-status="complete" class="btn btn-outline-success changetocomplete">Edit</i></button>
+            <button type="button" data-taskid="${key}" data-firstkey="${firstkey}" data-keydesc="${keydesc}" data-status="${status}" class="btn btn-outline-secondary updatetaskdetails" >Edit</button>
+            <button type="button" data-taskid="${key}" data-status="complete" class="btn btn-outline-success changetocomplete"><i class="tf-icons bx bx-rocket"></i></i></button>
             <button type="button" data-taskid="${key}" class="btn btn-icon btn-outline-danger deletetask"><i class="bx bx-trash-alt"></i></button>
           `;
           imageSource = "Bhavani/img/icons/unicons/chart.png";
         } else if(status === "completed"){
           imageSource = "Bhavani/img/icons/unicons/chart-success.png";
           actionButtons = `
+          <button type="button" data-taskid="${key}" data-firstkey="${firstkey}" data-keydesc="${keydesc}" data-status="${status}" class="btn btn-outline-secondary updatetaskdetails" >Edit</button>
             <button type="button" data-taskid="${taskid}" class="btn btn-icon btn-outline-danger deletetask"><i class="bx bx-trash-alt"></i></button>
         `;
         }
-
-        const [[firstkey, keydesc]] = Object.entries(value);
 
         todaytasks.innerHTML += `<li class="d-flex mb-4 pb-1">
         <div class="avatar flex-shrink-0 me-3">
@@ -143,8 +146,35 @@ document.getElementById("todaytasks").addEventListener("click", (e) => {
     const taskid = e.target.getAttribute("data-taskid");
     console.log("change to complete", taskid);
     updateTaskStatus(taskid, "completed");
+  } else if (e.target.classList.contains("updatetaskdetails")) {
+    document.getElementById("taskNameUpdate").value = e.target.getAttribute("data-firstkey");
+    document.getElementById("taskDescriptionUpdate").value = e.target.getAttribute("data-keydesc");
+    document.getElementById("taskidtoupdate").value = e.target.getAttribute("data-taskid");
+    document.getElementById("taskstatusnow").value = e.target.getAttribute("data-status");
+    const modal = new bootstrap.Modal(document.getElementById("updatetaskmodel"));
+    modal.show();
   }
 });
+
+document.getElementById("updatetaskbutton").addEventListener("click", () => {
+    const taskid = document.getElementById("taskidtoupdate").value;
+    const taskName = document.getElementById("taskNameUpdate").value.trim();
+    const taskDescription = document.getElementById("taskDescriptionUpdate").value.trim();
+    const taskstatus = document.getElementById("taskstatusnow").value;
+    if (taskName !== "" && taskDescription !== "") {
+        updateTask(taskid, taskName, taskDescription, taskstatus);
+        document.getElementById("taskNameUpdate").value = "";
+        document.getElementById("taskDescriptionUpdate").value = "";
+        document.getElementById("taskidtoupdate").value = "";
+        const modal = bootstrap.Modal.getInstance(
+            document.getElementById("updatetaskmodel")
+        );
+        modal.hide();
+    } else {
+        alert("Please enter both task name and task description.");
+    }
+    }
+);
 
 function deleteTask(taskid) {
   const taskRef = ref(database, `dailytaskes/${dateString}/${taskid}`);
@@ -167,5 +197,19 @@ function updateTaskStatus(taskid, newStatus) {
     })
     .catch((error) => {
       console.error("Error updating task status: ", error);
+    });
+}
+
+function updateTask( taskid, taskName, taskDescription, taskstatus) {
+  const taskRef = ref(database, `dailytaskes/${dateString}/${taskid}`);
+  set(taskRef, {
+    [taskName]: taskDescription,
+    taskstatus: taskstatus,
+  })
+    .then(() => {
+      console.log("Task updated successfully!");
+    })
+    .catch((error) => {
+      console.error("Error updating task: ", error);
     });
 }
