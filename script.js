@@ -119,26 +119,54 @@ function fetchTasksOfToday() {
       console.log("No tasks for today.");
     }
   });
+  function createTaskActionButtons(taskid, status) {
+    let actionButtons = "";
+    if (status === "pending") {
+      actionButtons = `
+      <button type="button" onclick="updateTaskStatus('${taskid}','running')" class="btn btn-outline-info">Edit</i></button>
+      <button type="button" onclick="deleattask('${taskid}')" class="btn btn-icon btn-outline-danger"><i class="bx bx-trash-alt"></i></button>
+    `;
+    } else if (status === "running") {
+      actionButtons = `
+      <button type="button" onclick="updateTaskStatus('${taskid}','complete')" class="btn btn-outline-success">Edit</i></button>
+      <button type="button" onclick="deleattask('${taskid}')" class="btn btn-icon btn-outline-danger"><i class="bx bx-trash-alt"></i></button>
+    `;
+    } else if (status === "complete") {
+      actionButtons = `
+        <button type="button" onclick="deleattask('${taskid}')" class="btn btn-icon btn-outline-danger"><i class="bx bx-trash-alt"></i></button>
+    `;
+    }
+    return actionButtons;
+
+    function updateTaskStatus(taskId, newStatus) {
+      const dailyTasksRef = ref(database, `dailytaskes/${dateString}/${taskId}`);
+    
+      // Update the task status in the database
+      set(dailyTasksRef, {
+        status: newStatus,
+      })
+        .then(() => {
+          console.log("Task status updated successfully!");
+        })
+        .catch((error) => {
+          console.error("Error updating task status: ", error);
+        });
+    }
+    
+    function deleattask(taskId) {
+      const dailyTasksRef = ref(database, `dailytaskes/${dateString}/${taskId}`);
+      set(dailyTasksRef, null)
+        .then(() => {
+          console.log("Task deleted successfully!");
+        })
+        .catch((error) => {
+          console.error("Error deleting task: ", error);
+        });
+    }
+
+  }
+  
 }
 
-function createTaskActionButtons(taskid, status) {
-  let actionButtons = "";
-  if (status === "pending") {
-    actionButtons = `
-    <button type="button" onclick="updateTaskStatus('${taskid}','running')" class="btn btn-outline-info">Edit</i></button>
-    <button type="button" onclick="deleattask('${taskid}')" class="btn btn-icon btn-outline-danger"><i class="bx bx-trash-alt"></i></button>
-  `;
-  } else if (status === "running") {
-    actionButtons = `
-    <button type="button" onclick="updateTaskStatus('${taskid}','complete')" class="btn btn-outline-success">Edit</i></button>
-    <button type="button" onclick="deleattask('${taskid}')" class="btn btn-icon btn-outline-danger"><i class="bx bx-trash-alt"></i></button>
-  `;
-  } else if (status === "complete") {
-    actionButtons = `
-      <button type="button" onclick="deleattask('${taskid}')" class="btn btn-icon btn-outline-danger"><i class="bx bx-trash-alt"></i></button>
-  `;
-  }
-  return actionButtons;
-}
 
 fetchTasksOfToday();
